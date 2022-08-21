@@ -1,0 +1,18 @@
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-containers {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:valid {
+    border-color: green;
+}
