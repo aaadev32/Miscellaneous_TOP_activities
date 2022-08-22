@@ -3,7 +3,7 @@
 //each field will likely require their own specific function
 
 let passwordVar = null;
-let isValid = null;
+let confirmedPasswordVar = null;
 
 const validators = (() => {
 
@@ -11,14 +11,11 @@ const validators = (() => {
     const email = (target) => {
         if (target.validity.typeMismatch) {
             target.setCustomValidity('use a proper email address!');
-            target.className = 'invalid';
             target.setAttribute('isvalid', 'false')
         } else {
             target.setCustomValidity('');
-            target.className = 'valid';
             target.setAttribute('isvalid', 'true')
 
-            isValid = true;
         }
         target.reportValidity();
         console.log(target)
@@ -27,11 +24,8 @@ const validators = (() => {
     const country = (target) => {
         if (target.validity.patternMismatch) {
             target.setCustomValidity('letters a-z only')
-            target.className = 'invalid';
         } else {
             target.setCustomValidity('');
-            target.className = 'valid';
-            isValid = true;
         }
         target.reportValidity();
 
@@ -40,34 +34,49 @@ const validators = (() => {
     const zipCode = (target) => {
         if (target.validity.patternMismatch) {
             target.setCustomValidity('5 digits of numbers only')
-            target.className = 'invalid';
         } else {
             target.setCustomValidity('');
-            target.className = 'valid';
-            isValid = true;
         }
         target.reportValidity();
     }
     //password validator function
     const password = (target) => {
         passwordVar = target.value;
+        if (target.value != confirmedPasswordVar) {
+            target.setCustomValidity('passwords do not match!');
+        } else {
+            target.setCustomValidity('')
+            document.getElementById('password-confirmation').setCustomValidity('');
+        }
         target.reportValidity();
     }
     //password confirmation validator function
     const passwordConfirmation = (target) => {
+        confirmedPasswordVar = target.value;
         if (target.value != passwordVar) {
-            target.setCustomValidity('passwords do not match!')
-            target.className = 'invalid';
+            target.setCustomValidity('passwords do not match!');
         } else {
             target.setCustomValidity('');
-            target.className = 'valid';
-            isValid = true;
+            document.getElementById('password').setCustomValidity('');
         }
         target.reportValidity();
     }
-
+    //submit function
     const submit = () => {
-        if (isValid != true) {
+        let truthyArr = document.querySelectorAll('input');
+        let validForm = null;
+        console.log(document.querySelectorAll('input'))
+
+        for (i = 0; i < truthyArr.length; i++) {
+            if (truthyArr[i].validity.valid != true) {
+                validForm = false;
+                break;
+            } else {
+                validForm = true;
+            }
+        }
+
+        if (validForm != true) {
             alert('you must properly fill fields according to their requirements to submit!');
         } else {
             alert('submitted!');
