@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="#" alt="">
+    
+</body>
+
+<script defer>
+    const img = document.querySelector('img');
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=cats', { mode: 'cors' })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            img.src = response.data.images.original.url;
+        });
+
+</script>
+
+</html>
