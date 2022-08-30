@@ -5,24 +5,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
 
     <title>Document</title>
 </head>
 
 <body>
-    <img src="#" alt="">
-    
+
+    <div>
+        <img src="#" alt="">
+    </div>
+    <div>
+        <button id="random-img">New Image</button>
+    </div>
+    <div>
+        <label for="search">Search</label>
+        <input type="search" id="search">
+    </div>
+
 </body>
 
 <script defer>
+    const randomButton = document.getElementById('random-img');
+    const searchInput = document.getElementById('search');
     const img = document.querySelector('img');
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=cats', { mode: 'cors' })
+    let defaultSearchQuery = 'cats';
+
+    randomButton.addEventListener('click', (event) => {
+        let query = defaultSearchQuery;
+        fetch(`https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=${query}`, { mode: 'cors' })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (response) {
+                console.log(response);
+                img.src = response.data.images.original.url;
+            });
+    });
+
+    searchInput.addEventListener('keydown', (event) => {
+        console.log(event.code);
+        if (event.code == "Enter") {
+            console.log(document.getElementById('search'))
+            let searchQuery = searchInput.value;
+            defaultSearchQuery = searchInput.value;
+            console.log(defaultSearchQuery)
+
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=${defaultSearchQuery}`, { mode: 'cors' })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    console.log(response)
+                    img.src = response.data.images.original.url;
+                })
+                .catch(Error => alert(Error))
+        }
+    });
+
+    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=${defaultSearchQuery}`, { mode: 'cors' })
         .then(function (response) {
             return response.json();
         })
         .then(function (response) {
             img.src = response.data.images.original.url;
         });
+
 
 </script>
 
