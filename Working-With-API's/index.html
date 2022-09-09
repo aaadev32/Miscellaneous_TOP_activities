@@ -51,7 +51,7 @@
             defaultSearchQuery = searchInput.value;
             console.log(defaultSearchQuery)
 
-            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=${defaultSearchQuery}`, { mode: 'cors' })
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=jMr4P781b4qY3dQ4LctNVXVZF59QdW1r&s=spongebob`, { mode: 'cors' })
                 .then(function (response) {
                     return response.json();
                 })
