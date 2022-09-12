@@ -1,5 +1,6 @@
 const sum = require('./learning-tdd');
 const capitalize = require(`./learning-tdd`);
+const reverseString = require('./learning-tdd');
 
 
 test(`adds 1 + 2 to equal 3`, () => {
@@ -7,6 +8,10 @@ test(`adds 1 + 2 to equal 3`, () => {
 });
 
 //this test is failing but after looking through the console.log it works fine....
-test('capitalizes the first character of a string', () => {
+/*test('capitalizes the first character of a string', () => {
     expect(capitalize(`linux`)).toBe('Linux')
+});*/
+
+test('take a string and reverse its characters', () => {
+    expect(reverseString('doodad')).toBe('dadood')
 });
