@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${/home/rusterz/repos/Miscellaneous_TOP_activities/jest-learning/jest-testing-practice/learning-tdd.js}/learning-tdd.js"
+            "program": "${/home/rusterz/repos/Miscellaneous_TOP_activities/jest-learning/jest-testing-practice}/learning-tdd.js"
         }
     ]
 }

@@ -9,8 +9,7 @@ function capitalize(str) {
 }
 
 function reverseString(str) {
-    let reverseStr = "";
-    console.log(str.length)
+    let reverseStr = '';
     for (let i = str.length; i >= 0; i--) {
         if (str[i] != undefined) {
             reverseStr += str[i];
@@ -19,7 +18,26 @@ function reverseString(str) {
     console.log(reverseStr);
     return reverseStr;
 }
-//capitalize('linux');
+let calculator = {
+    add: function (n1, n2) {
+        return n1 + n2;
+    }
+    , subtract: function (n1, n2) {
+        return n1 - n2;
+    }
+    , multiply: function (n1, n2) {
+        return n1 * n2;
+    }
+    , divide: function (n1, n2) {
+        return n1 / n2;
+    }
+
+}
+capitalize('linux');
 reverseString('doodad');
-module.exports = sum, capitalize, reverseString;
+console.log(calculator.multiply(5, 5));
+console.log(calculator.subtract(5, 2));
+console.log(calculator.divide(5, 3));
+
+module.exports = sum, capitalize, reverseString, calculator.add(), calculator.subtract(), calculator.multiply(), calculator.divide();
 
