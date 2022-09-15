@@ -4,7 +4,6 @@ function sum(a, b) {
 
 function capitalize(str) {
     const upperStr = str.charAt(0).toUpperCase() + str.slice(1);
-    console.log(upperStr);
     return upperStr;
 }
 
@@ -15,7 +14,6 @@ function reverseString(str) {
             reverseStr += str[i];
         }
     }
-    console.log(reverseStr);
     return reverseStr;
 }
 const calculator = {
@@ -38,9 +36,6 @@ function caesar(str, cipher) {
     let encipheredUnicode = [];
     let result = '';
     let plaintext = str;
-
-
-
     //creates unicode array
     for (let i = 0; i < plaintext.length; i++) {
 
@@ -95,5 +90,36 @@ function caesar(str, cipher) {
     }
     return result;
 }
-module.exports = { sum, capitalize, reverseString, calculator, caesar };
+
+function analyzeArray(arr) {
+    const data = new Object();
+    data.max = 0;
+    data.average = 0;
+    let total = 0;
+    //find length of arr
+    data.length = arr.length;
+
+    for (let i = 0; i < arr.length; i++) {
+        total += arr[i];
+        //find max of arr
+        if (arr[i] > data.max) {
+            data.max = arr[i];
+        }
+
+    }
+    //find min of arr
+    data.min = data.max;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < data.min) {
+            data.min = arr[i];
+        }
+    }
+
+    //find average of arr
+    data.average = total / arr.length;
+    return data;
+}
+let data = analyzeArray([1, 8, 3, 4, 2, 6])
+console.log(analyzeArray([1, 8, 3, 4, 2, 6]));
+module.exports = { sum, capitalize, reverseString, calculator, caesar, analyzeArray };
 

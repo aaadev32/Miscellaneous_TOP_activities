@@ -1,8 +1,5 @@
 const testDoc = require('./learning-tdd');
 
-
-
-
 test(`adds 1 + 2 to equal 3`, () => {
     expect(testDoc.sum(1, 2)).toBe(3);
 });
@@ -48,4 +45,16 @@ describe('caesar function tests', () => {
     test('works with large negative shift factors', () => {
         expect(testDoc.caesar('Hello, World!', -29)).toBe('Ebiil, Tloia!');
     });
+});
+let data = testDoc.analyzeArray([1, 2, 3]);
+console.log(data)
+describe('analyze array function tests', () => {
+    test('properly acquires average', () => {
+        expect(data).toHaveProperty('max', 3);
+        expect(data).toHaveProperty('average', 2);
+        expect(data).toHaveProperty('min', 1);
+        expect(data).toHaveProperty('length', 3);
+
+
+    })
 });
